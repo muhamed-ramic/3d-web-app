@@ -13,7 +13,7 @@ const Model = ({
   url,
   position,
   scale,
-  rotation
+  rotation,
 }: {
   url: string;
   position: number[];
@@ -21,7 +21,14 @@ const Model = ({
   rotation: number[];
 }) => {
   const { scene } = useGLTF(url);
-  return <primitive object={scene} scale={scale} position={position} rotation={rotation} />;
+  return (
+    <primitive
+      object={scene}
+      scale={scale}
+      position={position}
+      rotation={rotation}
+    />
+  );
 };
 
 const lighting = (
@@ -151,51 +158,175 @@ export default function Home() {
   };
   return (
     <>
-      <h1 className="p-5 text-3xl font-bold text-center">
-        Loading glb models using react three fiber.
+      <h1 className="p-4 text-2xl md:text-3xl font-bold text-center">
+        Loading GLB Models Using React Three Fiber
       </h1>
-      <div className="flex justify-center p-4">
-        
-      </div>
-      <div className="p-20 flex justify-between">
-        <div className="">
-          <h2 className="text-xl font-bold">Position - model1 - x, y, z</h2>
-          <input defaultValue={modelPositions[0].position[0]} type="number" onChange={(e) => handlePositionChange(0, 0, Number(e.target.value))} placeholder="X" />
-          <input defaultValue={modelPositions[0].position[1]} type="number" onChange={(e) => handlePositionChange(0, 1, Number(e.target.value))} placeholder="Y" />
-          <input defaultValue={modelPositions[0].position[2]} type="number" onChange={(e) => handlePositionChange(0, 2, Number(e.target.value))} placeholder="Z" />
-          <h2 className="text-xl font-bold">Rotation - model1 - x, y, z</h2>
-          <input defaultValue={modelPositions[0].rotation[0]} type="number" onChange={(e) => handleRotationChange(0, 0, Number(e.target.value))} placeholder="X" />
-          <input defaultValue={modelPositions[0].rotation[1]} type="number" onChange={(e) => handleRotationChange(0, 1, Number(e.target.value))} placeholder="Y" />
-          <input defaultValue={modelPositions[0].rotation[2]} type="number" onChange={(e) => handleRotationChange(0, 2, Number(e.target.value))} placeholder="Z" />
+
+      <div className="p-4 flex justify-center"></div>
+
+      {/* Inputs Panel */}
+      <div className="px-4 py-6 md:p-10 flex flex-col md:flex-row justify-between gap-8 overflow-auto">
+        {/* Model 1 Controls */}
+        <div className="flex flex-col space-y-4 w-full md:w-1/2">
+          <h2 className="text-lg md:text-xl font-bold">Position - Model 1</h2>
+          <div className="grid grid-cols-3 gap-2">
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[0].position[0]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(0, 0, Number(e.target.value))
+              }
+              placeholder="X"
+            />
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[0].position[1]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(0, 1, Number(e.target.value))
+              }
+              placeholder="Y"
+            />
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[0].position[2]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(0, 2, Number(e.target.value))
+              }
+              placeholder="Z"
+            />
+          </div>
+
+          <h2 className="text-lg md:text-xl font-bold">Rotation - Model 1</h2>
+          <div className="grid grid-cols-3 gap-2">
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[0].rotation[0]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(0, 0, Number(e.target.value))
+              }
+              placeholder="X"
+            />
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[0].rotation[1]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(0, 1, Number(e.target.value))
+              }
+              placeholder="Y"
+            />
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[0].rotation[2]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(0, 2, Number(e.target.value))
+              }
+              placeholder="Z"
+            />
+          </div>
         </div>
-        <div className="">
-          <h2 className="text-xl font-bold">Position - model2 - x,y, z</h2>
-          <input defaultValue={modelPositions[1].position[0]} type="number" onChange={(e) => handlePositionChange(1, 0, Number(e.target.value))} placeholder="X" />
-          <input defaultValue={modelPositions[1].position[1]} type="number" onChange={(e) => handlePositionChange(1, 1, Number(e.target.value))} placeholder="Y" />
-          <input defaultValue={modelPositions[1].position[2]} type="number" onChange={(e) => handlePositionChange(1, 2, Number(e.target.value))} placeholder="Z" />
-          <h2 className="text-xl font-bold">Rotation - model2 - x,y, z</h2>
-          <input defaultValue={modelPositions[1].rotation[0]} type="number" onChange={(e) => handleRotationChange(1, 0, Number(e.target.value))} placeholder="X" />
-          <input defaultValue={modelPositions[1].rotation[1]} type="number" onChange={(e) => handleRotationChange(1, 1, Number(e.target.value))} placeholder="Y" />
-          <input defaultValue={modelPositions[1].rotation[2]} type="number" onChange={(e) => handleRotationChange(1, 2, Number(e.target.value))} placeholder="Z" />
+
+        {/* Model 2 Controls */}
+        <div className="flex flex-col space-y-4 w-full md:w-1/2">
+          <h2 className="text-lg md:text-xl font-bold">Position - Model 2</h2>
+          <div className="grid grid-cols-3 gap-2">
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[1].position[0]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(1, 0, Number(e.target.value))
+              }
+              placeholder="X"
+            />
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[1].position[1]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(1, 1, Number(e.target.value))
+              }
+              placeholder="Y"
+            />
+            <input
+              className="border p-2 rounded w-full"
+              defaultValue={modelPositions[1].position[2]}
+              type="number"
+              onChange={(e) =>
+                handlePositionChange(1, 2, Number(e.target.value))
+              }
+              placeholder="Z"
+            />
+          </div>
+
+          <h2 className="text-lg md:text-xl font-bold">Rotation - Model 2</h2>
+          <div className="grid grid-cols-3 gap-2">
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[1].rotation[0]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(1, 0, Number(e.target.value))
+              }
+              placeholder="X"
+            />
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[1].rotation[1]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(1, 1, Number(e.target.value))
+              }
+              placeholder="Y"
+            />
+            <input
+              className="border p-2 rounded"
+              defaultValue={modelPositions[1].rotation[2]}
+              type="number"
+              onChange={(e) =>
+                handleRotationChange(1, 2, Number(e.target.value))
+              }
+              placeholder="Z"
+            />
+          </div>
         </div>
       </div>
-      <div className="text-center">
-        {loading ? <p>Saving...</p> : <button onClick={saveToDB} className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg cursor-pointer">Save to DB</button>}
+
+      {/* Buttons */}
+      <div className="text-center space-x-2 p-4">
+        {loading ? (
+          <p>Saving...</p>
+        ) : (
+          <button
+            onClick={saveToDB}
+            className="px-5 py-3 bg-blue-500 text-white font-semibold rounded-lg"
+          >
+            Save to DB
+          </button>
+        )}
+
         <button
           onClick={toggleView}
-          className="ml-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg"
+          className="px-5 py-3 bg-blue-500 text-white font-semibold rounded-lg"
         >
           Switch to {is3DView ? "2D View" : "3D View"}
         </button>
       </div>
-      <div className="p-10">
-        <div className="p-10 relative">
-          {/* Container for 3D View */}
+
+      {/* Viewer Section */}
+      <div className="p-4 md:p-10">
+        <div className="relative w-full h-[60vh] md:h-[75vh] rounded-lg overflow-hidden shadow-md">
+          {/* 3D View */}
           <div className={`absolute inset-0 ${is3DView ? "block" : "hidden"}`}>
             <ThreeDViewer />
           </div>
 
-          {/* Container for 2D View */}
+          {/* 2D View */}
           <div className={`absolute inset-0 ${is3DView ? "hidden" : "block"}`}>
             <TwoDTopDownViewer />
           </div>
